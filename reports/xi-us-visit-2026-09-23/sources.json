@@ -1,0 +1,239 @@
+{
+  "topic": "习近平对美国国事访问",
+  "visit_dates": ["2026-09-23", "2026-09-24", "2026-09-25"],
+  "collected_at": "2026-09-23T02:20:00Z",
+  "status": "行程已官宣。采集时未见专机降落或现场照片的确认报道。抵达欢迎仪式排在美东时间2026-09-23约16:10，安德鲁斯联合基地。",
+  "items": [
+    {
+      "id": "mfa-announcement",
+      "source": "中华人民共和国外交部",
+      "title": "习近平将对美国进行国事访问",
+      "published_at": "2026-09-21T15:00:00+08:00",
+      "url": "https://www.mfa.gov.cn/wjdt_674879/wsrc_674883/202609/t20260921_12027453.shtml",
+      "language": "zh",
+      "images": []
+    },
+    {
+      "id": "mfa-announcement-en",
+      "source": "中国驻摩尔多瓦大使馆网站",
+      "title": "Xi Jinping to Pay a State Visit to the United States",
+      "published_at": "2026-09-21T15:00:00+08:00",
+      "url": "https://md.china-embassy.gov.cn/eng/zgyw/202609/t20260921_12027514.htm",
+      "language": "en",
+      "images": []
+    },
+    {
+      "id": "gov-cn-xinhua-brief",
+      "source": "中国政府网",
+      "title": "习近平将对美国进行国事访问",
+      "published_at": "2026-09-21T15:09:00+08:00",
+      "url": "https://www.gov.cn/yaowen/liebiao/202609/content_7081653.htm",
+      "language": "zh",
+      "original_source": "新华社",
+      "images": []
+    },
+    {
+      "id": "mfa-presser",
+      "source": "中华人民共和国外交部",
+      "title": "2026年9月21日外交部发言人郭嘉昆主持例行记者会",
+      "published_at": "2026-09-21T18:37:00+08:00",
+      "url": "https://www.mfa.gov.cn/fyrbt_673021/202609/t20260921_12027748.shtml",
+      "language": "zh",
+      "images": []
+    },
+    {
+      "id": "xinhua-guo-brief",
+      "source": "新华网",
+      "title": "外交部介绍习近平主席访美有关安排和中方期待",
+      "published_at": "2026-09-21T15:33:38+08:00",
+      "url": "https://www.news.cn/world/20260921/ad993f7f0e8c4404bb29c96d7a99e567/c.html",
+      "language": "zh",
+      "images": []
+    },
+    {
+      "id": "xinhua-feature",
+      "source": "新华社",
+      "title": "共同擘画中美关系新篇章——写在习近平主席对美国进行国事访问之际",
+      "published_at": "2026-09-22T07:42:00+08:00",
+      "url": "https://www.gov.cn/yaowen/liebiao/202609/content_7081721.htm",
+      "alternate_urls": [
+        "https://www.news.cn/politics/leaders/20260922/6cb1b42a4291419db781ad6bad6f0e82/c.html"
+      ],
+      "authors": ["乔继红", "陆睿", "刘亚南"],
+      "language": "zh",
+      "images": []
+    },
+    {
+      "id": "white-house",
+      "source": "The White House",
+      "title": "First Lady Melania Trump Releases Details Ahead of Xi Jinping and Madame Peng Liyuan’s Visit",
+      "published_at": "2026-09-21",
+      "url": "https://www.whitehouse.gov/briefings-statements/2026/09/first-lady-melania-trump-releases-details-ahead-of-his-excellency-xi-jinping-president-of-the-peoples-republic-of-china-and-madame-peng-liyuans-visit-to-the-white-house/",
+      "language": "en",
+      "full_text_file": "whitehouse-statement.md",
+      "images": []
+    },
+    {
+      "id": "reuters-announcement",
+      "source": "Reuters",
+      "title": "China's Xi to visit the US from September 23-25",
+      "published_at": "2026-09-21T07:33:00Z",
+      "url": "https://www.reuters.com/world/china/chinas-xi-visit-us-september-23-25-2026-09-21/",
+      "language": "en",
+      "images": [
+        {
+          "description": "2026年9月12日，习近平在印度新德里金砖峰会欢迎仪式上",
+          "credit": "Sputnik/Alexander Kazakov/Pool via REUTERS",
+          "stored": false
+        }
+      ]
+    },
+    {
+      "id": "ap-seattle-times",
+      "source": "The Seattle Times / AP",
+      "title": "Trump will be at the airport to greet Xi when China’s leader arrives for his US state visit",
+      "published_at": "2026-09-18T17:56:00-07:00",
+      "url": "https://www.seattletimes.com/business/trump-will-be-at-the-airport-to-greet-xi-when-chinas-leader-arrives-for-his-us-state-visit/",
+      "language": "en",
+      "images": []
+    },
+    {
+      "id": "afp",
+      "source": "AFP",
+      "title": "Trump to give China's Xi rare airport welcome: official",
+      "published_at": "2026-09-17T15:45:00Z",
+      "url": "https://www.afp.com/en/trump-give-chinas-xi-rare-airport-welcome-official",
+      "language": "en",
+      "images": []
+    },
+    {
+      "id": "scmp",
+      "source": "South China Morning Post",
+      "title": "Rare honour: Trump will greet Xi at Andrews, not just the White House",
+      "published_at": "2026-09-17T23:13:00+08:00",
+      "url": "https://www.scmp.com/news/china/diplomacy/article/3367905/rare-honour-trump-will-greet-xi-andrews-not-just-white-house",
+      "author": "Khushboo Razdan",
+      "language": "en",
+      "images": []
+    },
+    {
+      "id": "bbc-chinese",
+      "source": "BBC News 中文",
+      "title": "习近平访美：特朗普将赴机场迎接，待遇比肩教宗和赫鲁晓夫",
+      "published_at": "2026-09-19",
+      "url": "https://www.bbc.com/zhongwen/articles/cx980mjemv73o/simp",
+      "language": "zh",
+      "images": [
+        {
+          "description": "1984年里根在阿拉斯加费尔班克斯国际机场迎接教宗若望保禄二世",
+          "credit": "Bettmann via Getty Images",
+          "stored": false
+        },
+        {
+          "description": "2015年9月24日，时任副总统拜登夫妇在机场迎接习近平",
+          "credit": "BBC News Chinese",
+          "stored": false
+        },
+        {
+          "description": "2024年5月7日，武契奇在贝尔格莱德机场迎接习近平",
+          "credit": "Getty Images",
+          "stored": false
+        }
+      ]
+    },
+    {
+      "id": "voa-chinese",
+      "source": "美国之音中文网",
+      "title": "白宫公布迎接习近平来访细节安排：总统接机、军礼欢迎、军机飞越、国宴款待",
+      "published_at": "2026-09-21T23:47:00Z",
+      "url": "https://www.voachinese.com/a/white-house-released-details-for-xi-visit-20260921/8202378.html",
+      "language": "zh",
+      "images": [
+        {
+          "description": "2026年5月30日，总统车队专车停在白宫北门廊",
+          "credit": "美国之音资料照片",
+          "stored": false
+        },
+        {
+          "description": "2026年5月30日，白宫国事楼层入口厅",
+          "credit": "美国之音资料照片",
+          "stored": false
+        },
+        {
+          "description": "2026年5月30日，连接国宴厅与东厅的十字厅走廊",
+          "credit": "美国之音资料照片",
+          "stored": false
+        }
+      ]
+    },
+    {
+      "id": "zaobao-announce",
+      "source": "联合早报",
+      "title": "习近平9月23日至25日访问美国",
+      "published_at": "2026-09-21T15:03:00+08:00",
+      "url": "https://www.zaobao.com.sg/news/china/story20260921-9709941",
+      "language": "zh",
+      "images": [
+        {
+          "description": "2025年10月30日，习近平与特朗普在韩国釜山会晤",
+          "credit": "路透社",
+          "stored": false
+        }
+      ]
+    },
+    {
+      "id": "zaobao-schedule",
+      "source": "联合早报",
+      "title": "白宫公布习近平访美安排 将举行阅兵及军机飞越仪式",
+      "published_at": "2026-09-22T09:02:00+08:00",
+      "url": "https://www.zaobao.com.sg/news/china/story20260922-9713681",
+      "language": "zh",
+      "images": [
+        {
+          "description": "2026年5月14日，特朗普与习近平在北京天坛并肩",
+          "credit": "路透社档案照片",
+          "stored": false
+        }
+      ]
+    },
+    {
+      "id": "cnbc-dinner",
+      "source": "CNBC",
+      "title": "Here's who we know is going to the Trump-Xi dinner so far",
+      "published_at": "2026-09-22",
+      "url": "https://www.cnbc.com/2026/09/22/heres-who-we-know-is-going-to-the-trump-xi-dinner-so-far.html",
+      "language": "en",
+      "images": [
+        {
+          "description": "2026年5月14日，黄仁勋与蒂姆·库克抵达北京人民大会堂",
+          "credit": "CNBC图注",
+          "stored": false
+        }
+      ]
+    },
+    {
+      "id": "reuters-dinner-gma",
+      "source": "Reuters via GMA News",
+      "title": "Trump's state dinner for Xi Jinping to feature top CEOs from tech, banking",
+      "published_at": "2026-09-23T04:58:00+08:00",
+      "url": "https://www.gmanetwork.com/news/topstories/world/1003364/trump-s-state-dinner-for-xi-jinping-to-feature-top-ceos-from-tech-banking/story/",
+      "language": "en",
+      "images": [
+        {
+          "description": "2025年10月30日，特朗普与习近平在釜山金海国际机场双边会见",
+          "credit": "REUTERS/Evelyn Hockstein",
+          "stored": false
+        }
+      ]
+    },
+    {
+      "id": "washington-times",
+      "source": "The Washington Times",
+      "title": "Tech titans to flank Trump, Xi at White House state dinner next week",
+      "published_at": "2026-09-19",
+      "url": "https://www.washingtontimes.com/news/2026/sep/19/tech-titans-flank-trump-xi-white-house-state-dinner-next-week/",
+      "language": "en",
+      "images": []
+    }
+  ]
+}

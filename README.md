@@ -49,8 +49,8 @@ python -m news_fetcher --start 2026-09-22 --end 2026-09-22 --no-body
 
 仓库内已整理 **18 篇** 中外媒体报道（含 9 月 23 日当日稿件），含原文链接、完整正文与配图本地副本：
 
-- 索引：[archives/xi-jinping-us-visit-2026-09-23/README.md](archives/xi-jinping-us-visit-2026-09-23/README.md)
-- 重新抓取：`PYTHONPATH=. python3 scripts/archive_xi_us_visit.py`
+- 索引：[output/2026-09-23/README.md](output/2026-09-23/README.md)
+- 重新抓取：`PYTHONPATH=. python3 scripts/archive_xi_us_visit.py --date 2026-09-23`
 
 ## 说明
 

@@ -1,23 +1,30 @@
 #!/usr/bin/env python3
-"""抓取习近平访美相关报道，保存正文与图片到 archives 目录。"""
+"""抓取习近平访美相关报道，保存到仓库根目录 output/日期/。"""
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import List, Optional
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
+from docx import Document
+from docx.shared import Pt
 
 from news_fetcher.http import HttpClient
 from news_fetcher.utils import clean_html_text
 
-ARCHIVE_DIR = Path(__file__).resolve().parents[1] / "archives" / "xi-jinping-us-visit-2026-09-23"
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+def resolve_output_dir(output_date: date) -> Path:
+    return REPO_ROOT / "output" / output_date.isoformat()
 
 # 访美行程核心报道（含 9 月 23 日当日及官方行程说明）
 ARTICLE_URLS: List[dict] = [
@@ -253,7 +260,13 @@ def image_extension(url: str, content_type: str = "") -> str:
     return ".jpg"
 
 
-def archive_one(client: HttpClient, meta: dict, articles_dir: Path, images_dir: Path) -> ArchivedArticle:
+def archive_one(
+    client: HttpClient,
+    meta: dict,
+    articles_dir: Path,
+    images_dir: Path,
+    output_dir: Path,
+) -> ArchivedArticle:
     url = meta["url"]
     source = meta.get("source", "")
     note = meta.get("note", "")
@@ -279,7 +292,7 @@ def archive_one(client: HttpClient, meta: dict, articles_dir: Path, images_dir: 
             ext = image_extension(img_url)
             local_name = f"{idx:02d}_{digest}{ext}"
             local_path = article_images_dir / local_name
-            rel_path = str(local_path.relative_to(ARCHIVE_DIR))
+            rel_path = str(local_path.relative_to(output_dir))
             if download_image(client, img_url, local_path):
                 images.append(ImageAsset(original_url=img_url, local_path=rel_path, alt=alt))
             else:
@@ -352,12 +365,38 @@ def write_article_markdown(article: ArchivedArticle, path: Path) -> None:
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
-def write_index(articles: List[ArchivedArticle], path: Path) -> None:
+def write_word_report(articles: List[ArchivedArticle], path: Path) -> None:
+    doc = Document()
+    normal = doc.styles["Normal"]
+    normal.font.name = "宋体"
+    normal.font.size = Pt(11)
+    doc.add_heading("习近平主席访美报道汇编", level=0)
+    doc.add_paragraph(
+        f"共 {len(articles)} 篇；生成时间 {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}"
+    )
+    for art in sorted(articles, key=lambda a: (a.published_at, a.title)):
+        doc.add_heading(art.title, level=1)
+        doc.add_paragraph(f"信息来源：{art.source}")
+        doc.add_paragraph(f"原文网址：{art.url}")
+        doc.add_paragraph(f"发布时间：{art.published_at or '（未标注）'}")
+        doc.add_paragraph(f"抓取状态：{art.fetch_status}")
+        doc.add_paragraph(art.body_text or "（未能提取正文）")
+        if art.images:
+            doc.add_paragraph("配图原址：")
+            for img in art.images:
+                doc.add_paragraph(img.original_url, style="List Bullet")
+        doc.add_page_break()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    doc.save(path)
+
+
+def write_index(articles: List[ArchivedArticle], path: Path, output_date: date) -> None:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     lines = [
-        "# 习近平主席访美报道归档（2026年9月23日起）",
+        f"# 习近平主席访美报道归档（{output_date.isoformat()}）",
         "",
-        f"本目录由仓库脚本自动抓取整理，最后更新：**{now}**。",
+        f"本目录由仓库脚本自动抓取整理，输出路径：`output/{output_date.isoformat()}/`，"
+        f"最后更新：**{now}**。",
         "",
         "## 访问背景",
         "",
@@ -382,7 +421,10 @@ def write_index(articles: List[ArchivedArticle], path: Path) -> None:
             "",
             "## 数据文件",
             "",
+            "- Word 汇总：`report.docx`",
             "- 结构化元数据：`metadata.json`",
+            "- 单篇 Markdown：`articles/`",
+            "- 配图：`images/`",
             "- 抓取脚本：`scripts/archive_xi_us_visit.py`",
             "",
             "## 说明",
@@ -394,23 +436,41 @@ def write_index(articles: List[ArchivedArticle], path: Path) -> None:
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="抓取习近平访美报道到 output/日期/")
+    parser.add_argument(
+        "--date",
+        help="输出子目录日期，格式 YYYY-MM-DD（默认：当天 UTC 日期）",
+        default=None,
+    )
+    return parser.parse_args()
+
+
 def main() -> int:
+    args = parse_args()
+    if args.date:
+        output_date = datetime.strptime(args.date, "%Y-%m-%d").date()
+    else:
+        output_date = datetime.now(timezone.utc).date()
+
+    output_dir = resolve_output_dir(output_date)
     client = HttpClient(timeout=35, retries=3)
-    articles_dir = ARCHIVE_DIR / "articles"
-    images_dir = ARCHIVE_DIR / "images"
+    articles_dir = output_dir / "articles"
+    images_dir = output_dir / "images"
     articles_dir.mkdir(parents=True, exist_ok=True)
     images_dir.mkdir(parents=True, exist_ok=True)
 
     archived: List[ArchivedArticle] = []
     for meta in ARTICLE_URLS:
         print(f"抓取: {meta['url']}")
-        article = archive_one(client, meta, articles_dir, images_dir)
+        article = archive_one(client, meta, articles_dir, images_dir, output_dir)
         archived.append(article)
         md_path = articles_dir / f"{slugify(article.title)}.md"
         write_article_markdown(article, md_path)
 
     payload = {
-        "topic": "习近平主席访美 2026-09-23",
+        "topic": f"习近平主席访美 {output_date.isoformat()}",
+        "output_dir": str(output_dir.relative_to(REPO_ROOT)),
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "article_count": len(archived),
         "articles": [
@@ -421,11 +481,13 @@ def main() -> int:
             for a in archived
         ],
     }
-    (ARCHIVE_DIR / "metadata.json").write_text(
+    (output_dir / "metadata.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
     )
-    write_index(archived, ARCHIVE_DIR / "README.md")
+    write_index(archived, output_dir / "README.md", output_date)
+    write_word_report(archived, output_dir / "report.docx")
     ok = sum(1 for a in archived if a.fetch_status == "ok")
+    print(f"输出目录: {output_dir}")
     print(f"完成：{ok}/{len(archived)} 篇成功")
     return 0
 

@@ -45,6 +45,13 @@ python -m news_fetcher --start 2026-09-22 --end 2026-09-22 --no-body
 - `news_YYYY-MM-DD_YYYY-MM-DD.json`
 - `news_YYYY-MM-DD_YYYY-MM-DD.md`
 
+## 专题归档：习近平主席访美（2026-09-23）
+
+仓库内已整理 **18 篇** 中外媒体报道（含 9 月 23 日当日稿件），含原文链接、完整正文与配图本地副本：
+
+- 索引：[output/2026-09-23/README.md](output/2026-09-23/README.md)
+- 重新抓取：`PYTHONPATH=. python3 scripts/archive_xi_us_visit.py --date 2026-09-23`
+
 ## 说明
 
 - 各站点页面结构可能调整；若某来源失败，程序会继续抓取其他来源并在 JSON 中记录错误。
